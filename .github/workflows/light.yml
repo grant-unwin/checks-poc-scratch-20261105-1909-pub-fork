@@ -1,0 +1,10 @@
+# The cheapest real job: no checkout, no action download.
+name: light
+on:
+  pull_request:
+    paths: ['light/**']
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "light job"

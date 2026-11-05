@@ -1,0 +1,10 @@
+name: timeout
+on:
+  pull_request:
+    paths: ['timeout/**']
+jobs:
+  stuck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: sleep 100

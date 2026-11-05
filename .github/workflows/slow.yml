@@ -1,0 +1,10 @@
+# A job that is still running when the next push arrives.
+name: slow
+on:
+  pull_request:
+    paths: ['slow/**']
+jobs:
+  wait:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 300

@@ -1,0 +1,14 @@
+# A failing job that writes an error annotation on a file of the repository.
+name: fail
+on:
+  pull_request:
+    paths: ['src/**']
+jobs:
+  broken:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on purpose
+        run: |
+          echo "::error file=src/hello.txt,line=1,title=Planted failure::this went wrong on purpose"
+          exit 3

@@ -1,0 +1,21 @@
+# A passing job, a checkout, and a planted canary that the controller must mask.
+name: pass
+on:
+  pull_request:
+    paths: ['src/**']
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Say hello
+        run: |
+          echo "hello from a runners.io check"
+          cat src/hello.txt
+      - name: Print a planted canary
+        run: echo "the canary is CANARY-9f3c2a77-do-not-leak"
+  skipped-by-if:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.draft == true }}
+    steps:
+      - run: echo "this job only runs for draft pull requests"

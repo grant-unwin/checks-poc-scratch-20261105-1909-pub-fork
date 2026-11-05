@@ -1,0 +1,11 @@
+# The push path stays on GitHub. The label below is served by nobody, so a push to
+# main queues this and it never runs and costs nothing.
+name: push-main
+on:
+  push:
+    branches: [main]
+jobs:
+  main-only:
+    runs-on: [self-hosted, checks-poc-never-served]
+    steps:
+      - run: echo "never runs"
